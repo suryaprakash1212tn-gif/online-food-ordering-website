@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Online food ordering system</title>
+        
+</head>
+<body>
+    
+    <div class="container">
+
+<h2>Food Menu</h2>
+
+<div class="menu">
+
+<div class="card">
+<h3>Burger</h3>
+<p>₹120</p>
+<input type="checkbox" id="burger">
+Quantity
+<input type="number" id="burgerQty" min="1" value="1">
+</div>
+
+<div class="card">
+<h3>Pizza</h3>
+<p>₹250</p>
+<input type="checkbox" id="pizza">
+Quantity
+<input type="number" id="pizzaQty" min="1" value="1">
+</div>
+
+<div class="card">
+<h3>Sandwich</h3>
+<p>₹90</p>
+<input type="checkbox" id="sandwich">
+Quantity
+<input type="number" id="sandwichQty" min="1" value="1">
+</div>
+
+<div class="card">
+<h3>Fries</h3>
+<p>₹80</p>
+<input type="checkbox" id="fries">
+Quantity
+<input type="number" id="friesQty" min="1" value="1">
+</div>
+
+<div class="card">
+<h3>Juice</h3>
+<p>₹60</p>
+<input type="checkbox" id="juice">
+Quantity
+<input type="number" id="juiceQty" min="1" value="1">
+</div>
+
+</div>
+
+<h2>Customer Details</h2>
+
+<div class="form">
+
+<input type="text" id="name" placeholder="Customer Name">
+
+<input type="text" id="mobile" placeholder="Mobile Number">
+
+<textarea id="address" placeholder="Address"></textarea>
+
+<button onclick="calculateBill()">Place Order</button>
+
+</div>
+
+<h2>Order Summary</h2>
+
+<div id="summary"></div>
+
+</div>
+
+</body>
+</html>
+<style>
+    title{
+        color: rgb(213, 114, 26);
+    }
+    h1{
+        color: rgb(1, 1, 17);
+        font-size: xx-large;
+        
+
+    }
+    h2{
+        color: blue;
+        background-color: aqua;
+        cener
+        
+    }
+
+    
+    button{
+        color: blue;
+      
+    }
+    div{
+        color: red
+    }
+    
+    
+
+</style>
+<script>
+function calculateBill(){
+
+let name=document.getElementById("name").value;
+let mobile=document.getElementById("mobile").value;
+let address=document.getElementById("address").value;
+
+if(name=="" || mobile=="" || address==""){
+alert("the customer details are not filled");
+return;
+}
+
+if(mobile.length!=10 || isNaN(mobile)){
+alert("You entered the invalid number");
+return;
+}
+
+let total=0;
+
+let result="<h3>Customer : "+name+"</h3>";
+
+function item(name,price,id,qtyId){
+
+let check=document.getElementById(id);
+
+let qty=parseInt(document.getElementById(qtyId).value);
+
+if(check.checked){
+
+let subtotal=price*qty;
+
+total+=subtotal;
+
+result+=name+" x"+qty+" = ₹"+subtotal+"<br>";
+
+}
+
+}
+
+item("Burger",120,"burger","burgerQty");
+
+item("Pizza",250,"pizza","pizzaQty");
+
+item("Sandwich",90,"sandwich","sandwichQty");
+
+item("Fries",80,"fries","friesQty");
+
+item("Juice",60,"juice","juiceQty");
+
+result+="<hr>";
+
+result+="<h2>Grand Total = ₹"+total+"</h2>";
+
+result+="<h2 style='color:green;'>Thank You for Ordering!</h2>";
+
+document.getElementById("summary").innerHTML=result;
+
+}
+
+</script>
